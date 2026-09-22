@@ -5,6 +5,18 @@
   "visualCharacteristics": "Full-bleed background media (image or video) spanning the viewport width, with a single overlaid call-to-action text link positioned over the media.",
   "contentPattern": "Background asset (image/video) + a single call-to-action text link overlay.",
   "usage": "Homepage hero banner with an immersive room scene and a promotional financing link.",
-  "options": ["align-top-center"],
-  "memberVariantIds": ["hero-overlay"]
+  "options": [
+    "align-top-center"
+  ],
+  "memberVariantIds": [
+    "hero-overlay"
+  ],
+  "usageTracking": {
+    "pagesUsing": [
+      "/index",
+      "/sale"
+    ],
+    "reuseCount": 2,
+    "lastUsed": "2026-09-22T12:30:00.000Z"
+  }
 }
