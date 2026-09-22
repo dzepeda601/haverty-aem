@@ -1,0 +1,10 @@
+{
+  "variantName": "carousel-product",
+  "baseBlock": "carousel",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "A titled, horizontally-scrollable strip of product cards with prev/next arrows. Each card shows a product image (with an optional hover image), a product name link, a struck-through original price plus a special price, and a short description.",
+  "contentPattern": "Optional title row (row label), then one row per product card: image (+ optional hover image) + name link + original/special price + short description.",
+  "usage": "Sale page product carousels ('Shop These Limited-Time Deals', 'Best-Selling Sofas/Sectionals/Dining Tables/Beds on Sale').",
+  "options": [],
+  "memberVariantIds": ["carousel-product"]
+}

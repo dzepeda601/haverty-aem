@@ -1,0 +1,187 @@
+/* Carousel Product — titled, horizontally-scrollable strip of product cards
+   with dual pricing. Matches havertys.com /sale product carousels. */
+
+.carousel-product {
+  position: relative;
+}
+
+/* Row title (e.g. "Shop These Limited-Time Deals") — rust label */
+.carousel-product .carousel-product-title {
+  margin-bottom: 1rem;
+}
+
+.carousel-product .carousel-product-title p,
+.carousel-product .carousel-product-title h2,
+.carousel-product .carousel-product-title h3 {
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-rust);
+  letter-spacing: 0.3px;
+}
+
+/* Navigation arrows — top-right, above the strip */
+.carousel-product .carousel-product-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.carousel-product .carousel-product-nav button {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--color-rust);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.carousel-product .carousel-product-nav button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--color-rust);
+  border-bottom: 0;
+  border-left: 0;
+}
+
+.carousel-product .carousel-product-prev::after {
+  transform: translate(-30%, -50%) rotate(-135deg);
+}
+
+.carousel-product .carousel-product-next::after {
+  transform: translate(-70%, -50%) rotate(45deg);
+}
+
+.carousel-product .carousel-product-nav button[disabled] {
+  opacity: 0.35;
+  cursor: auto;
+}
+
+/* Scroll track */
+.carousel-product .carousel-product-track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-product .carousel-product-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Product card */
+.carousel-product .carousel-product-card {
+  flex: 0 0 78%;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid light-dark(rgb(0 0 0 / 8%), rgb(255 255 255 / 12%));
+}
+
+.carousel-product .carousel-product-image {
+  position: relative;
+  background: var(--color-parchment);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.carousel-product .carousel-product-image picture,
+.carousel-product .carousel-product-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Hover image sits on top, revealed on card hover */
+.carousel-product .carousel-product-hover-image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.carousel-product .carousel-product-card:hover .carousel-product-hover-image {
+  opacity: 1;
+}
+
+/* Card body */
+.carousel-product .carousel-product-card > :not(.carousel-product-image) {
+  margin: 0;
+  padding: 0 1rem;
+}
+
+.carousel-product .carousel-product-card > :first-child:not(.carousel-product-image) {
+  padding-top: 1rem;
+}
+
+.carousel-product .carousel-product-name {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--body-font-family);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-rust);
+  text-decoration: none;
+}
+
+/* Prices */
+.carousel-product .carousel-product-prices {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin-top: 0.35rem;
+}
+
+.carousel-product .carousel-product-price-special {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-rust);
+}
+
+.carousel-product .carousel-product-price-original {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-ink);
+  text-decoration: line-through;
+}
+
+/* Description */
+.carousel-product .carousel-product-card p:last-child {
+  margin-top: 0.5rem;
+  padding-bottom: 1rem;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+@media (width >= 600px) {
+  .carousel-product .carousel-product-card {
+    flex-basis: 42%;
+  }
+}
+
+@media (width >= 900px) {
+  .carousel-product .carousel-product-card {
+    flex-basis: 30%;
+  }
+}
+
+@media (width >= 1200px) {
+  .carousel-product .carousel-product-card {
+    flex-basis: 23%;
+  }
+}

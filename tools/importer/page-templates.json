@@ -9,90 +9,246 @@
         "https://www.havertys.com/"
       ],
       "representativeUrl": "https://www.havertys.com/",
-      "description": "Havertys homepage: hero, shop-by-category carousel, designer-pick carousel, editorial lookbook, dual promo teasers, sign-up CTA, and fine print.",
-      "urlPattern": "/",
+      "description": "To be named in naming step",
       "blocks": [
         {
           "name": "hero-overlay",
-          "instances": [".hero-container .hero", ".hero-main-container"]
+          "instances": [
+            ".hero-container .hero",
+            ".hero-main-container"
+          ]
         },
         {
           "name": "carousel-category",
-          "instances": [".category-carousel-container .category-carousel", ".category-carousel-main-container"]
+          "instances": [
+            ".category-carousel-container .category-carousel",
+            ".category-carousel-main-container"
+          ]
         },
         {
           "name": "carousel-designer",
-          "instances": [".highlight-carousel-container .highlight-carousel", ".highlight-container-wrapper"]
+          "instances": [
+            ".highlight-carousel-container .highlight-carousel",
+            ".highlight-container-wrapper"
+          ]
         },
         {
           "name": "teaser-editorial",
-          "instances": [".editorial-container .editorial"]
+          "instances": [
+            ".editorial-container .editorial"
+          ]
         },
         {
           "name": "teaser-promo",
-          "instances": [".commerce-teaser-container .commerce-teaser", ".commerce-teaser-wrapper .commerce-teaser"]
+          "instances": [
+            ".commerce-teaser-container .commerce-teaser",
+            ".commerce-teaser-wrapper .commerce-teaser"
+          ]
         },
         {
           "name": "hero-cta",
-          "instances": [".call-to-action-container .call-to-action", ".call-to-action-main-container"]
+          "instances": [
+            ".call-to-action-container .call-to-action",
+            ".call-to-action-main-container"
+          ]
         }
       ],
       "sections": [
         {
           "id": "rc2",
           "name": "hero",
-          "selector": [".section.hero-container", "#main-content > div.section.hero-container"],
+          "selector": [
+            ".section.hero-container",
+            "#main-content > div.section.hero-container"
+          ],
           "style": null,
-          "blocks": ["hero-overlay"],
+          "blocks": [
+            "hero-overlay"
+          ],
           "defaultContent": []
         },
         {
           "id": "rc3",
           "name": "shop-by-category",
-          "selector": [".section.category-carousel-container", "#main-content > div.section.category-carousel-container"],
+          "selector": [
+            ".section.category-carousel-container",
+            "#main-content > div.section.category-carousel-container"
+          ],
           "style": null,
-          "blocks": ["carousel-category"],
+          "blocks": [
+            "carousel-category"
+          ],
           "defaultContent": []
         },
         {
           "id": "rc4",
           "name": "designer-pick",
-          "selector": [".section.highlight-carousel-container", "#main-content > div.section.highlight-carousel-container"],
+          "selector": [
+            ".section.highlight-carousel-container",
+            "#main-content > div.section.highlight-carousel-container"
+          ],
           "style": null,
-          "blocks": ["carousel-designer"],
+          "blocks": [
+            "carousel-designer"
+          ],
           "defaultContent": []
         },
         {
           "id": "rc5",
           "name": "lookbook",
-          "selector": [".section.editorial-container", "#main-content > div.section.editorial-container"],
+          "selector": [
+            ".section.editorial-container",
+            "#main-content > div.section.editorial-container"
+          ],
           "style": null,
-          "blocks": ["teaser-editorial"],
+          "blocks": [
+            "teaser-editorial"
+          ],
           "defaultContent": []
         },
         {
           "id": "rc6",
           "name": "promo",
-          "selector": [".section.commerce-teaser-container", "#main-content > div.section.bg-image.commerce-teaser-container"],
+          "selector": [
+            ".section.commerce-teaser-container",
+            "#main-content > div.section.bg-image.commerce-teaser-container"
+          ],
           "style": null,
-          "blocks": ["teaser-promo"],
+          "blocks": [
+            "teaser-promo"
+          ],
           "defaultContent": []
         },
         {
           "id": "rc7",
           "name": "get-exclusive-access",
-          "selector": [".section.call-to-action-container", "#main-content > div.section.call-to-action-container"],
+          "selector": [
+            ".section.call-to-action-container",
+            "#main-content > div.section.call-to-action-container"
+          ],
           "style": "cta",
-          "blocks": ["hero-cta"],
+          "blocks": [
+            "hero-cta"
+          ],
           "defaultContent": []
         },
         {
           "id": "rc8",
           "name": "fine-print",
-          "selector": [".section.read-more-container", "#main-content > div.section.read-more-container.fragment-container.hvt-text-container"],
+          "selector": [
+            ".section.read-more-container",
+            "#main-content > div.section.read-more-container.fragment-container.hvt-text-container"
+          ],
           "style": null,
           "blocks": [],
-          "defaultContent": [".hvt-text"]
+          "defaultContent": [
+            ".hvt-text"
+          ]
+        }
+      ],
+      "urlPattern": "/"
+    },
+    {
+      "name": "sale",
+      "urls": [
+        "https://www.havertys.com/sale"
+      ],
+      "representativeUrl": "https://www.havertys.com/sale",
+      "description": "Havertys sale landing page: hero, product carousels, mattress-brand logo grid, and SEO copy.",
+      "urlPattern": "/sale",
+      "blocks": [
+        {
+          "name": "hero-overlay",
+          "instances": [
+            ".section.bg-image.hvt-text-container"
+          ]
+        },
+        {
+          "name": "carousel-product",
+          "instances": [
+            ".product-carousel-container .product-carousel"
+          ]
+        },
+        {
+          "name": "cards-logo",
+          "instances": [
+            ".grid-container.dynamic-media-image-container"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "rc2",
+          "name": "hero",
+          "selector": [
+            ".section.bg-image.hvt-text-container"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-overlay"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc3",
+          "name": "deals-carousel",
+          "selector": [
+            "#fabric",
+            ".section.product-carousel-container"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc4",
+          "name": "bestseller-carousels",
+          "selector": [
+            ".section.product-carousel-container:nth-of-type(3)"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc5",
+          "name": "mattress-brands-label",
+          "selector": [
+            ".section.hvt-text-container:nth-of-type(4)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".hvt-text"
+          ]
+        },
+        {
+          "id": "rc6",
+          "name": "brand-logos",
+          "selector": [
+            ".section.grid-container.dynamic-media-image-container"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-logo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc7",
+          "name": "seo-fineprint",
+          "selector": [
+            ".section.hvt-text-container.fragment-container"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".hvt-text"
+          ]
         }
       ]
     }

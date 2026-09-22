@@ -43,6 +43,29 @@
   margin: 0;
 }
 
+/* Heading-led hero (e.g. sale page "Every. Single. Thing. Is On Sale.") —
+   center the overlay and render the headings in light type over the media. */
+.hero-overlay .hero-overlay-content:has(h1, h2) {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-xl, 32px) var(--content-padding-inline);
+}
+
+.hero-overlay .hero-overlay-content h1,
+.hero-overlay .hero-overlay-content h2 {
+  margin: 0;
+  color: var(--color-parchment, #f7f7f7);
+  font-family: var(--heading-font-family, orpheuspro, serif);
+  font-weight: 400;
+  line-height: 1.05;
+  text-shadow: 0 2px 18px rgb(0 0 0 / 35%);
+}
+
+.hero-overlay .hero-overlay-content h1 {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+}
+
 /* The financing CTA link: small, italic, subtle, underlined */
 .hero-overlay .hero-overlay-content em {
   font-style: italic;

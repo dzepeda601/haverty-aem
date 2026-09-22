@@ -35,13 +35,20 @@ export default function parse(element, { document }) {
   if (bgVideoLink) mediaCell.push(bgVideoLink);
   if (mediaCell.length) cells.push([mediaCell]);
 
-  // --- Overlay content: the CTA text link ---
-  const cta = element.querySelector('.feature-product-text a[href], .hero-text-content a[href], a[href]:not(.hero-first-variation-anchor-img)');
+  // --- Overlay content ---
+  // Preferred: a CTA text link (homepage hero). Fallback: heading text
+  // (e.g. the sale hero "Every. Single. Thing. Is On Sale." — a .hvt-text block
+  // of <h1>s with no link). Capture whichever the source provides.
   const contentCell = [];
+  const cta = element.querySelector('.feature-product-text a[href], .hero-text-content a[href], a[href]:not(.hero-first-variation-anchor-img)');
   if (cta) {
     // Preserve the emphasis wrapper (e.g. <em><a>…</a></em>) when present.
     const wrapper = cta.closest('em, p');
     contentCell.push(wrapper && wrapper.textContent.trim() === cta.textContent.trim() ? wrapper : cta);
+  } else {
+    // No CTA — carry any heading(s) from the text block as the overlay content.
+    const headings = element.querySelectorAll('.hvt-text h1, .hvt-text h2, .hvt-text h3, h1, h2');
+    headings.forEach((h) => contentCell.push(h));
   }
 
   // Empty-block guard: no media and no CTA means nothing meaningful to import.

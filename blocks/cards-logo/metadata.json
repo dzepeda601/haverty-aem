@@ -1,0 +1,10 @@
+{
+  "variantName": "cards-logo",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "A responsive grid of brand logo images (6-across on desktop), each wrapped in a link to a category page. No captions or body text — the logo itself is the clickable element.",
+  "contentPattern": "One row per logo: an image wrapped in (or paired with) a link to the destination category page.",
+  "usage": "Sale page 'Top-Selling Mattress Brands' logo grid (Stearns & Foster, Sealy, Tempur-Pedic, Serta, Beautyrest, 1885 Collection).",
+  "options": [],
+  "memberVariantIds": ["cards-logo"]
+}
