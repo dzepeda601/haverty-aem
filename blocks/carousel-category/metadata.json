@@ -1,0 +1,10 @@
+{
+  "variantName": "carousel-category",
+  "baseBlock": "carousel",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Horizontal swipeable strip showing several square category tiles at once; each tile is an image with a centered label beneath, and prev/next arrows scroll the strip.",
+  "contentPattern": "One row per category tile: image cell + label/link cell that navigates to the category page.",
+  "usage": "'Shop by Category' navigation strip on the homepage.",
+  "options": [],
+  "memberVariantIds": ["carousel-category"]
+}

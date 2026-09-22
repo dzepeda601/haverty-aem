@@ -1,0 +1,10 @@
+{
+  "variantName": "teaser-promo",
+  "baseBlock": "teaser",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "One or more promotional panels shown side by side over a shared background; each panel pairs media (image or video) with a content column (eyebrow, heading, description, one or more CTA links).",
+  "contentPattern": "One row per panel: media (image or video) + content cell (eyebrow, heading, description, CTA link(s)).",
+  "usage": "'Design Service' / 'Happiness in Every Moment' dual promo band on the homepage.",
+  "options": ["featured-left", "featured-right"],
+  "memberVariantIds": ["teaser-promo"]
+}

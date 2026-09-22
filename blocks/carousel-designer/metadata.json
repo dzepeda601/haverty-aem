@@ -1,0 +1,10 @@
+{
+  "variantName": "carousel-designer",
+  "baseBlock": "carousel",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Rotating one-slide-at-a-time carousel; each slide pairs a large room-scene image with a content column (eyebrow heading, description, CTA link, product thumbnail, product name, and sale/original price). Prev/next arrows and product-name tab indicators.",
+  "contentPattern": "One row per slide: room-scene image cell + content cell (heading, description, CTA link, product image, product name link, sale price + original price).",
+  "usage": "'Designer Pick' featured-collection carousel on the homepage.",
+  "options": [],
+  "memberVariantIds": ["carousel-designer"]
+}

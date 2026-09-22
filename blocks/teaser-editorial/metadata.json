@@ -1,0 +1,10 @@
+{
+  "variantName": "teaser-editorial",
+  "baseBlock": "teaser",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Editorial promo combining two overlapping images with a centered title/description card; the whole unit is a single clickable link to an external lookbook.",
+  "contentPattern": "Two images + text card (heading + description) wrapped in one external link.",
+  "usage": "'Fall 2026 Lookbook' editorial promo on the homepage.",
+  "options": [],
+  "memberVariantIds": ["teaser-editorial"]
+}

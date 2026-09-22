@@ -1,0 +1,106 @@
+/* Carousel Category — horizontal scroll strip of category tiles.
+   Matches havertys.com "SHOP BY CATEGORY": landscape (3:2) images with a
+   centered label beneath, and rust circular-outline arrow buttons top-right. */
+
+.carousel-category {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navigation arrows — rendered top-right, above the strip. */
+.carousel-category .carousel-category-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.carousel-category .carousel-category-nav button {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50px 50px;
+  cursor: pointer;
+}
+
+.carousel-category .carousel-category-nav button.carousel-category-prev {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Cg transform='translate(-97 -2212)'%3E%3Cg transform='translate(97 2212)' fill='none' stroke='%2396674a' stroke-width='1'%3E%3Ccircle cx='25' cy='25' r='25' stroke='none'/%3E%3Ccircle cx='25' cy='25' r='24.5' fill='none'/%3E%3C/g%3E%3Cpath d='M76.422,6.1,79.166,3.1V19.09a.836.836,0,1,0,1.667,0V3.1L83.577,6.1a.785.785,0,0,0,1.178,0,.969.969,0,0,0,0-1.286L80.589.266a.785.785,0,0,0-1.178,0L75.244,4.811a.969.969,0,0,0,0,1.286A.785.785,0,0,0,76.422,6.1Z' transform='translate(112.613 2317) rotate(-90)' fill='%2396674a'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.carousel-category .carousel-category-nav button.carousel-category-next {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Cg transform='translate(-1272 -2212)'%3E%3Cg transform='translate(1272 2212)' fill='none' stroke='%2396674a' stroke-width='1'%3E%3Ccircle cx='25' cy='25' r='25' stroke='none'/%3E%3Ccircle cx='25' cy='25' r='24.5' fill='none'/%3E%3C/g%3E%3Cpath d='M76.422,6.1,79.166,3.1V19.09a.836.836,0,1,0,1.667,0V3.1L83.577,6.1a.785.785,0,0,0,1.178,0,.969.969,0,0,0,0-1.286L80.589.266a.785.785,0,0,0-1.178,0L75.244,4.811a.969.969,0,0,0,0,1.286A.785.785,0,0,0,76.422,6.1Z' transform='translate(1307 2157) rotate(90)' fill='%2396674a'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.carousel-category .carousel-category-nav button[disabled] {
+  opacity: 0.35;
+  cursor: auto;
+}
+
+/* Scroll strip. */
+.carousel-category .carousel-category-track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-category .carousel-category-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-category .carousel-category-tile {
+  flex: 0 0 70%;
+  scroll-snap-align: start;
+  text-align: center;
+}
+
+.carousel-category .carousel-category-tile-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 3 / 2;
+}
+
+.carousel-category .carousel-category-tile-label {
+  margin-top: 15px;
+}
+
+.carousel-category .carousel-category-tile-label p {
+  margin: 0;
+}
+
+.carousel-category .carousel-category-tile-label a {
+  font-size: 15px;
+  line-height: 19px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #4d4d4d;
+  text-decoration: none;
+}
+
+.carousel-category .carousel-category-tile-link {
+  display: block;
+}
+
+@media (width >= 600px) {
+  .carousel-category .carousel-category-tile {
+    flex-basis: 40%;
+  }
+}
+
+@media (width >= 900px) {
+  .carousel-category .carousel-category-tile {
+    /* ~5 tiles visible within the section, with a 1rem gap between them */
+    flex-basis: calc((100% - 4 * 1rem) / 5);
+  }
+}

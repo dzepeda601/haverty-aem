@@ -1,0 +1,12 @@
+{
+  "type": "da",
+  "sites": {
+    "haverty-aem": {
+      "previewOrg": "dzepeda601",
+      "previewSite": "haverty-aem",
+      "contentHostUrl": "https://content.da.live/dzepeda601/haverty-aem/",
+      "botProtected": true,
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+    }
+  }
+}

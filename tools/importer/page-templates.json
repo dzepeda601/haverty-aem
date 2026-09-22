@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "projectType": "da"
+  },
+  "templates": [
+    {
+      "name": "home",
+      "urls": [
+        "https://www.havertys.com/"
+      ],
+      "representativeUrl": "https://www.havertys.com/",
+      "description": "Havertys homepage: hero, shop-by-category carousel, designer-pick carousel, editorial lookbook, dual promo teasers, sign-up CTA, and fine print.",
+      "urlPattern": "/",
+      "blocks": [
+        {
+          "name": "hero-overlay",
+          "instances": [".hero-container .hero", ".hero-main-container"]
+        },
+        {
+          "name": "carousel-category",
+          "instances": [".category-carousel-container .category-carousel", ".category-carousel-main-container"]
+        },
+        {
+          "name": "carousel-designer",
+          "instances": [".highlight-carousel-container .highlight-carousel", ".highlight-container-wrapper"]
+        },
+        {
+          "name": "teaser-editorial",
+          "instances": [".editorial-container .editorial"]
+        },
+        {
+          "name": "teaser-promo",
+          "instances": [".commerce-teaser-container .commerce-teaser", ".commerce-teaser-wrapper .commerce-teaser"]
+        },
+        {
+          "name": "hero-cta",
+          "instances": [".call-to-action-container .call-to-action", ".call-to-action-main-container"]
+        }
+      ],
+      "sections": [
+        {
+          "id": "rc2",
+          "name": "hero",
+          "selector": [".section.hero-container", "#main-content > div.section.hero-container"],
+          "style": null,
+          "blocks": ["hero-overlay"],
+          "defaultContent": []
+        },
+        {
+          "id": "rc3",
+          "name": "shop-by-category",
+          "selector": [".section.category-carousel-container", "#main-content > div.section.category-carousel-container"],
+          "style": null,
+          "blocks": ["carousel-category"],
+          "defaultContent": []
+        },
+        {
+          "id": "rc4",
+          "name": "designer-pick",
+          "selector": [".section.highlight-carousel-container", "#main-content > div.section.highlight-carousel-container"],
+          "style": null,
+          "blocks": ["carousel-designer"],
+          "defaultContent": []
+        },
+        {
+          "id": "rc5",
+          "name": "lookbook",
+          "selector": [".section.editorial-container", "#main-content > div.section.editorial-container"],
+          "style": null,
+          "blocks": ["teaser-editorial"],
+          "defaultContent": []
+        },
+        {
+          "id": "rc6",
+          "name": "promo",
+          "selector": [".section.commerce-teaser-container", "#main-content > div.section.bg-image.commerce-teaser-container"],
+          "style": null,
+          "blocks": ["teaser-promo"],
+          "defaultContent": []
+        },
+        {
+          "id": "rc7",
+          "name": "get-exclusive-access",
+          "selector": [".section.call-to-action-container", "#main-content > div.section.call-to-action-container"],
+          "style": "cta",
+          "blocks": ["hero-cta"],
+          "defaultContent": []
+        },
+        {
+          "id": "rc8",
+          "name": "fine-print",
+          "selector": [".section.read-more-container", "#main-content > div.section.read-more-container.fragment-container.hvt-text-container"],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [".hvt-text"]
+        }
+      ]
+    }
+  ]
+}

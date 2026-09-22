@@ -1,0 +1,275 @@
+/* Carousel Designer — "Designer Pick" rotating editorial slides.
+   Values extracted from https://www.havertys.com/ .highlight-container-wrapper */
+
+.carousel-designer {
+  position: relative;
+  color: var(--color-ink);
+}
+
+.carousel-designer .carousel-designer-track {
+  position: relative;
+}
+
+/* Each slide: text | room image | product callout.
+   Mobile-first — stacked; switches to 3 columns at desktop. */
+.carousel-designer .carousel-designer-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Only the active slide is shown. */
+.carousel-designer .carousel-designer-slide[aria-hidden='true'] {
+  display: none;
+}
+
+/* --- Text column --- */
+.carousel-designer .carousel-designer-text {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.carousel-designer .carousel-designer-eyebrow {
+  margin: 0;
+  padding: 0 0 14px;
+  font-family: var(--font-family-serif);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 44px;
+  letter-spacing: 0.8px;
+  color: var(--color-heading);
+}
+
+.carousel-designer .carousel-designer-text p {
+  margin: 0 0 1rem;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-ink);
+}
+
+/* Shop link — plain green text link (source: .button.textLink). */
+.carousel-designer .carousel-designer-shop-container {
+  margin: 0.5rem 0 0;
+}
+
+.carousel-designer a.carousel-designer-shop:any-link {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 19px;
+  letter-spacing: normal;
+  text-transform: none;
+  text-decoration: none;
+  color: var(--color-green);
+}
+
+.carousel-designer a.carousel-designer-shop:any-link::after {
+  content: '\2192';
+  margin-left: 0.35em;
+}
+
+.carousel-designer a.carousel-designer-shop:any-link:hover,
+.carousel-designer a.carousel-designer-shop:any-link:focus-visible {
+  background: transparent;
+  color: var(--color-green);
+  text-decoration: none;
+}
+
+/* --- Room-scene image column --- */
+.carousel-designer .carousel-designer-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* --- Product callout column --- */
+.carousel-designer .carousel-designer-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.carousel-designer .carousel-designer-product img {
+  display: block;
+  width: 263px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.carousel-designer .carousel-designer-product-name {
+  margin: 0 0 5px;
+  padding: 0;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 19px;
+  color: var(--color-ink);
+}
+
+.carousel-designer .carousel-designer-product-name a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Suppress the global short-underline (lazy-styles h2::after) on both headings.
+   Three classes to outrank the global :is(main) > .section h2::after rule. */
+.carousel-designer .carousel-designer-slide .carousel-designer-text h2.carousel-designer-eyebrow::after,
+.carousel-designer .carousel-designer-slide .carousel-designer-product h2.carousel-designer-product-name::after {
+  content: none;
+  display: none;
+}
+
+/* Price: rust sale price + struck-through original. */
+.carousel-designer .carousel-designer-price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+}
+
+.carousel-designer .carousel-designer-price-sale {
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 19px;
+  color: var(--color-rust);
+}
+
+.carousel-designer .carousel-designer-price-original {
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19px;
+  color: var(--color-ink);
+  text-decoration: line-through;
+}
+
+/* --- Navigation arrows --- */
+.carousel-designer .carousel-designer-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.carousel-designer .carousel-designer-nav button {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: 1px solid var(--color-ink);
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+.carousel-designer .carousel-designer-nav button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--color-ink);
+  border-bottom: 0;
+  border-left: 0;
+}
+
+.carousel-designer .carousel-designer-prev::after {
+  transform: translate(-30%, -50%) rotate(-135deg);
+}
+
+.carousel-designer .carousel-designer-next::after {
+  transform: translate(-70%, -50%) rotate(45deg);
+}
+
+/* --- Product-name tab indicators --- */
+.carousel-designer .carousel-designer-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  margin-top: 1.25rem;
+}
+
+.carousel-designer .carousel-designer-dot {
+  padding: 0 25px 8px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 19px;
+  color: var(--color-green);
+  opacity: 0.65;
+}
+
+.carousel-designer .carousel-designer-dot[aria-current='true'] {
+  opacity: 1;
+  border-bottom-color: var(--color-rust);
+}
+
+@media (width >= 900px) {
+  .carousel-designer .carousel-designer-slide {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0 77px;
+    padding-bottom: 40px;
+  }
+
+  .carousel-designer .carousel-designer-text {
+    flex: 0 1 330px;
+  }
+
+  .carousel-designer .carousel-designer-image {
+    flex: 0 0 400px;
+  }
+
+  .carousel-designer .carousel-designer-image img {
+    width: 400px;
+    height: 607px;
+  }
+
+  .carousel-designer .carousel-designer-product {
+    flex: 0 1 330px;
+  }
+
+  /* Arrows sit on a hairline rule spanning the block width. */
+  .carousel-designer .carousel-designer-nav {
+    position: relative;
+    margin-top: -25px;
+  }
+
+  .carousel-designer .carousel-designer-nav::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 60px;
+    right: 60px;
+    height: 1px;
+    background: var(--color-rust);
+    opacity: 0.5;
+  }
+
+  .carousel-designer .carousel-designer-dots {
+    gap: 0;
+    margin-top: 1.5rem;
+  }
+}

@@ -1,0 +1,37 @@
+/* Havertys brand tokens — extracted from https://www.havertys.com/ */
+
+/* Adobe Fonts (Typekit) kit — provides soleil (body) + orpheuspro (headings) */
+@import url('https://use.typekit.net/qlw1agr.css');
+
+:root {
+  /* Fonts (Adobe Fonts kit qlw1agr) */
+  --heading-font-family: orpheuspro, "Times New Roman", serif;
+  --body-font-family: soleil, -apple-system, blinkmacsystemfont, "Helvetica Neue", sans-serif;
+
+  /* Core colors */
+  --background-color: rgb(255 255 255);
+  --text-color: rgb(77 77 77);
+  --color-ink: rgb(37 42 47);
+  --color-heading: rgb(65 75 85);
+
+  /* Brand accents */
+  --color-rust: rgb(150 103 74);
+  --color-green: rgb(61 78 60);
+  --color-cream: rgb(247 247 247);
+
+  /* Links */
+  --link-color: rgb(77 77 77);
+  --link-hover-color: rgb(150 103 74);
+
+  /* Spacing */
+  --section-padding: 42px;
+  --nav-height: 116px;
+
+  /* Heading sizes (desktop) */
+  --heading-size-xxl: 44px;
+  --heading-size-xl: 28px;
+  --heading-size-l: 24px;
+  --heading-size-m: 18px;
+  --heading-size-s: 15px;
+  --heading-size-xs: 13px;
+}

@@ -1,0 +1,107 @@
+/* Hero CTA — full-bleed green sign-up band: heading + subheading on the left,
+   a single cream pill CTA on the right (row on desktop, stacked on mobile).
+   Values extracted from the Havertys source ".call-to-action-main-container". */
+
+.hero-cta {
+  /* Full-bleed green band that escapes the section's max-width container */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  box-sizing: border-box;
+  background-color: var(--color-green, var(--color-gold, #3d4e3c));
+  color: var(--color-cream, var(--color-parchment, #f7f7f7));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+  padding: 32px 20px;
+}
+
+.hero-cta .hero-cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hero-cta .hero-cta-text > * {
+  margin: 0;
+  color: var(--color-cream, var(--color-parchment, #f7f7f7));
+}
+
+/* Heading — serif (orpheuspro), light weight, all-caps content */
+.hero-cta .hero-cta-text h2 {
+  font-family: var(--heading-font-family, var(--font-family-serif));
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: 0.8px;
+}
+
+/* Suppress the global decorative h2 accent bar — source has none in this band.
+   Uses !important to beat the higher-specificity global `.section ... h2::after`. */
+.hero-cta .hero-cta-text h2::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Subheading — sans (soleil), small supporting line */
+.hero-cta .hero-cta-text h5 {
+  font-family: var(--body-font-family, var(--font-family));
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.hero-cta .hero-cta-action {
+  margin: 0;
+}
+
+.hero-cta .hero-cta-action p {
+  margin: 0;
+}
+
+/* Cream pill CTA — override the global outline button within block scope */
+main .hero-cta .hero-cta-action a.button:any-link {
+  display: inline-block;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 25px;
+  padding: 16px 32px;
+  font-family: var(--body-font-family, var(--font-family));
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.25;
+  text-transform: none;
+  letter-spacing: normal;
+  background-color: var(--color-cream, var(--color-parchment, #f7f7f7));
+  color: var(--color-ink, #252a2f);
+}
+
+main .hero-cta .hero-cta-action a.button:any-link:hover,
+main .hero-cta .hero-cta-action a.button:any-link:focus-visible {
+  background-color: var(--color-ink, #252a2f);
+  border-color: var(--color-ink, #252a2f);
+  color: var(--color-cream, var(--color-parchment, #f7f7f7));
+}
+
+@media (width >= 900px) {
+  .hero-cta {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    gap: 32px;
+
+    /* Constrain inner content to ~1232px and center it, with source's 62px inset */
+    padding: 30px max(62px, calc((100vw - 1232px) / 2 + 62px));
+  }
+
+  .hero-cta .hero-cta-text h2 {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  .hero-cta .hero-cta-action {
+    flex-shrink: 0;
+  }
+}

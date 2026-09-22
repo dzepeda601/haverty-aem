@@ -123,9 +123,185 @@ async function loadFragments(section) {
   await dynamicBlocks(main);
 }
 
+// --- BEGIN DM/Scene7 auto-block (excat-generated) ---
+
+const DM_BREAKPOINTS = [
+  { media: '(min-width: 600px)', width: 2000 }, // desktop
+  { width: 750 },                               // mobile / fallback (no media)
+];
+
+// ---- Canonical helpers (keep in sync with dm-scene7-helpers.js) ----
+function detectDynamicMediaUrl(urlStr) {
+  // Reject relative URLs up front — without this guard, the auto-block
+  // scans every anchor in <main> and a normal site link like
+  // `<a href="/is/image/foo">` would be classified as DM and replaced by
+  // a <picture>. Keep byte-identical with dm-scene7-helpers.js.
+  if (!/^(https?:\/\/|\/\/)/i.test(urlStr)) return false;
+  let u;
+  try { u = new URL(urlStr, 'https://x/'); } catch (e) { return false; }
+  // Scene7 detected by path alone — hostname is irrelevant because
+  // customer sites routinely CNAME a vanity domain to Scene7 (e.g.
+  // media-assets.brand.example).
+  if (u.pathname.startsWith('/is/image/')) {
+    return 'scene7';
+  }
+  if (/^delivery-p\d+-e\d+\.adobeaemcloud\.com$/.test(u.hostname)
+      && u.pathname.startsWith('/adobe/assets/urn:')) {
+    return 'dm-openapi';
+  }
+  return false;
+}
+
+function buildScene7Rendition(src, { width, format }) {
+  // Manipulate the query string verbatim — URL.searchParams percent-
+  // encodes `$`, but Scene7's IS/Image template-parameter syntax
+  // (`$image=`, `$badge=`, etc.) requires the literal `$`. Encoded
+  // form is silently dropped by Scene7's parser, returning the bare
+  // template image instead of the personalized composite.
+  const normalized = src.startsWith('//') ? `https:${src}` : src;
+  const qIdx = normalized.indexOf('?');
+  const base = qIdx >= 0 ? normalized.slice(0, qIdx) : normalized;
+  const query = qIdx >= 0 ? normalized.slice(qIdx + 1) : '';
+  const pairs = query.split('&').filter((p) => p);
+  const filtered = pairs.filter((p) => {
+    const k = p.split('=')[0];
+    return k !== 'wid' && k !== 'fmt';
+  });
+  filtered.push(`wid=${width}`);
+  filtered.push(`fmt=${format}`);
+  return `${base}?${filtered.join('&')}`;
+}
+
+function buildDmOpenApiRendition(src, { width }) {
+  // Synthetic base — see buildScene7Rendition above.
+  const url = new URL(src, 'https://x/');
+  url.searchParams.set('width', String(width));
+  return url.toString();
+}
+
+function findDmOnAnchor(a) {
+  if (!a || typeof a.getAttribute !== 'function') return null;
+  const href = a.getAttribute('href') || '';
+  if (detectDynamicMediaUrl(href)) return { mode: 'unlinked', dmUrl: href };
+  const title = a.getAttribute('title') || '';
+  if (detectDynamicMediaUrl(title)) return { mode: 'linked', dmUrl: title };
+  return null;
+}
+
+// True when the given anchor is the sole child of a markdown-generated
+// <p> wrapper that should be unwrapped so the picture becomes a top-
+// level grid cell. P only — NEVER DIV.
+function isUnwrappableMarkdownParagraph(anchor) {
+  const parent = anchor && anchor.parentElement;
+  if (!parent || parent.tagName !== 'P') return false;
+  if (parent.children.length !== 1 || parent.firstElementChild !== anchor) return false;
+  return parent.textContent.trim() === anchor.textContent.trim();
+}
+
+// Sentinel used by the transformer when source <img> alt is empty.
+const EMPTY_ALT_SENTINEL = 'Image without alt text';
+
+function linkTextToAlt(linkText) {
+  return linkText === EMPTY_ALT_SENTINEL ? '' : linkText;
+}
+
+// ---- Rendering ----
+function appendSource(picture, { type, srcset, media }) {
+  const source = document.createElement('source');
+  if (type) source.type = type;
+  source.srcset = srcset;
+  if (media) source.setAttribute('media', media);
+  picture.append(source);
+}
+
+function renderScene7Picture(src, alt) {
+  const picture = document.createElement('picture');
+  DM_BREAKPOINTS.forEach((bp) => appendSource(picture, {
+    type: 'image/webp',
+    srcset: buildScene7Rendition(src, { width: bp.width, format: 'webp' }),
+    media: bp.media,
+  }));
+  DM_BREAKPOINTS.forEach((bp) => appendSource(picture, {
+    type: 'image/jpeg',
+    srcset: buildScene7Rendition(src, { width: bp.width, format: 'jpg' }),
+    media: bp.media,
+  }));
+  const img = document.createElement('img');
+  img.src = buildScene7Rendition(src, { width: 750, format: 'jpg' });
+  img.alt = alt;
+  img.loading = 'lazy';
+  picture.append(img);
+  return picture;
+}
+
+function renderDmOpenApiPicture(src, alt) {
+  const picture = document.createElement('picture');
+  DM_BREAKPOINTS.forEach((bp) => appendSource(picture, {
+    srcset: buildDmOpenApiRendition(src, { width: bp.width }),
+    media: bp.media,
+  }));
+  const img = document.createElement('img');
+  img.src = buildDmOpenApiRendition(src, { width: 750 });
+  img.alt = alt;
+  img.loading = 'lazy';
+  picture.append(img);
+  return picture;
+}
+
+function buildDynamicMediaImages(main) {
+  main.querySelectorAll('a').forEach((a) => {
+    const match = findDmOnAnchor(a);
+    if (!match) return;
+
+    const { mode, dmUrl } = match;
+    const alt = linkTextToAlt(a.textContent.trim());
+    const picture = detectDynamicMediaUrl(dmUrl) === 'scene7'
+      ? renderScene7Picture(dmUrl, alt)
+      : renderDmOpenApiPicture(dmUrl, alt);
+
+    // decorateButtons() runs before buildAutoBlocks() and promotes these
+    // text links to buttons; strip that styling before rebuilding.
+    a.classList.remove('button', 'primary', 'secondary');
+    if (a.classList.length === 0) a.removeAttribute('class');
+    const buttonContainer = a.parentElement;
+    if (
+      buttonContainer
+      && buttonContainer.classList.contains('button-container')
+      && buttonContainer.children.length === 1
+    ) {
+      buttonContainer.classList.remove('button-container');
+      if (buttonContainer.classList.length === 0) buttonContainer.removeAttribute('class');
+    }
+
+    if (mode === 'linked') {
+      a.removeAttribute('title');
+      a.replaceChildren(picture);
+      return;
+    }
+
+    if (isUnwrappableMarkdownParagraph(a)) {
+      a.parentElement.replaceWith(picture);
+    } else {
+      a.replaceWith(picture);
+    }
+  });
+}
+
+// Register the DM dispatcher for createOptimizedPicture interop (aem.js).
+window.__dmRender__ = (src, alt) => {
+  const family = detectDynamicMediaUrl(src);
+  if (!family) return null;
+  return family === 'scene7'
+    ? renderScene7Picture(src, alt)
+    : renderDmOpenApiPicture(src, alt);
+};
+
+// --- END DM/Scene7 auto-block ---
+
 function buildAutoBlocks(main) {
   try {
     buildEmbedBlocks(main);
+    buildDynamicMediaImages(main);
   } catch (error) {
     console.error('Auto Blocking failed', error);
   }
@@ -167,11 +343,40 @@ async function inlineColorIcons(scope) {
   });
 }
 
+/**
+ * Process `.section-metadata` tables into section-level classes/styles.
+ * The core decorateSections() in aem.js does not translate section metadata,
+ * so a raw `<div class="section-metadata">` would otherwise render as visible
+ * text and 404 as a missing block. This mirrors the standard EDS behavior:
+ * each row is `key | value`; a `style` key adds each value as a class on the
+ * containing top-level section div, any other key becomes a data attribute.
+ * @param {Element} main
+ */
+function processSectionMetadata(main) {
+  main.querySelectorAll(':scope > div > div.section-metadata').forEach((meta) => {
+    const section = meta.closest(':scope > div') || meta.parentElement;
+    const config = readBlockConfig(meta);
+    Object.keys(config).forEach((key) => {
+      const value = config[key];
+      if (key === 'style') {
+        value.split(',').forEach((s) => {
+          const cls = toClassName(s.trim());
+          if (cls) section.classList.add(cls);
+        });
+      } else {
+        section.dataset[toCamelCase(key)] = value;
+      }
+    });
+    meta.remove();
+  });
+}
+
 export function decorateMain(main) {
   decorateButtons(main);
   decorateIcons(main);
   inlineColorIcons(main);
   buildAutoBlocks(main);
+  processSectionMetadata(main);
   decorateSections(main);
   decorateBlocks(main);
   if (document.contains(main)) initPageSchemas();

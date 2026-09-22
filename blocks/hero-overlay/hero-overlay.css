@@ -1,0 +1,98 @@
+/* Hero Overlay — full-bleed background media with an overlaid CTA link.
+   When authored without media (media can't be captured from the source video),
+   the block renders as a neutral full-bleed hero band with the CTA link
+   anchored bottom-right, matching the source overlay treatment. */
+
+.hero-overlay {
+  position: relative;
+  line-height: 0;
+}
+
+/* Background media fills the block */
+.hero-overlay .hero-overlay-media {
+  position: relative;
+  line-height: 0;
+}
+
+.hero-overlay .hero-overlay-media picture,
+.hero-overlay .hero-overlay-media img,
+.hero-overlay .hero-overlay-media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 640px;
+  object-fit: cover;
+}
+
+/* Overlay content sits over the media, anchored bottom-right (source default) */
+.hero-overlay .hero-overlay-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1.25rem var(--content-padding-inline);
+  text-align: right;
+  line-height: normal;
+}
+
+.hero-overlay .hero-overlay-content p {
+  margin: 0;
+}
+
+/* The financing CTA link: small, italic, subtle, underlined */
+.hero-overlay .hero-overlay-content em {
+  font-style: italic;
+}
+
+.hero-overlay .hero-overlay-content a:any-link {
+  font-family: var(--body-font-family, soleil, sans-serif);
+  font-size: 15px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--color-text, #4d4d4d);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.hero-overlay .hero-overlay-content a:any-link:hover,
+.hero-overlay .hero-overlay-content a:any-link:focus-visible {
+  color: var(--color-rust);
+}
+
+/* Media-less variant: neutral full-bleed hero band with a sensible height */
+.hero-overlay.hero-overlay-no-media {
+  min-height: 360px;
+  background-color: var(--color-parchment, #f7f7f7);
+}
+
+/* Full-bleed: escape the section's max-width wrapper */
+.hero-overlay-wrapper:has(.hero-overlay-no-media) {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+/* On dark media the link is light (source appearance) */
+.hero-overlay:not(.hero-overlay-no-media) .hero-overlay-content a:any-link {
+  color: var(--color-parchment, #f7f7f7);
+}
+
+@media (width >= 900px) {
+  .hero-overlay .hero-overlay-media picture,
+  .hero-overlay .hero-overlay-media img,
+  .hero-overlay .hero-overlay-media video {
+    max-height: 720px;
+  }
+
+  .hero-overlay.hero-overlay-no-media {
+    min-height: 560px;
+  }
+
+  .hero-overlay .hero-overlay-content {
+    padding: 3.5rem clamp(2rem, 11%, 10rem);
+  }
+}

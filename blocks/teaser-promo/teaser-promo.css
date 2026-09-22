@@ -1,0 +1,183 @@
+/* Teaser Promo — dual promotional band: two panels over a shared background
+   image. Each panel pairs large media (image / video) with a frosted-glass
+   content card (eyebrow, heading, description, CTA links).
+   Values extracted from source .commerce-teaser computed styles. */
+
+/* ── Section: shared background image behind both panels ────────────────── */
+
+/* The authored background image lands in a sibling .default-content-wrapper.
+   Promote the section to a positioning context and stretch that image to
+   cover the whole band; the panels then float above it. */
+main .section.teaser-promo-container {
+  position: relative;
+  margin: 0;
+  padding-block: 24px;
+  overflow: hidden;
+}
+
+main .section.teaser-promo-container > .default-content-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Media fill — declared before the higher-specificity background rule below. */
+.teaser-promo .teaser-promo-media picture,
+.teaser-promo .teaser-promo-media img,
+.teaser-promo .teaser-promo-media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+main .section.teaser-promo-container > .default-content-wrapper picture,
+main .section.teaser-promo-container > .default-content-wrapper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Panels sit above the background image. */
+main .section.teaser-promo-container > .teaser-promo-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1232px;
+  margin-inline: auto;
+  padding: 0;
+}
+
+/* ── Block / panel layout ───────────────────────────────────────────────── */
+.teaser-promo .teaser-promo-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.teaser-promo .teaser-promo-media {
+  position: relative;
+  overflow: hidden;
+  line-height: 0;
+}
+
+/* ── Frosted-glass content card ─────────────────────────────────────────── */
+.teaser-promo .teaser-promo-content {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 28px;
+  background-color: rgb(255 255 255 / 50%);
+  backdrop-filter: blur(30px) brightness(1.15);
+  text-align: center;
+}
+
+/* Eyebrow (first paragraph) */
+.teaser-promo .teaser-promo-content > p:first-child {
+  margin: 0 0 6px;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
+  color: var(--color-rust);
+}
+
+.teaser-promo .teaser-promo-content h2 {
+  margin: 0 0 15px;
+  font-family: var(--heading-font-family);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.8px;
+  color: var(--color-ink);
+}
+
+/* Source headings have no decorative underline — suppress the global h2 accent.
+   4 classes clears the lazy-styles global rule's (0,3,3) specificity. */
+.teaser-promo-container .teaser-promo-wrapper .teaser-promo .teaser-promo-content h2::after {
+  content: none;
+}
+
+/* Description (any paragraph that is not the eyebrow and not a button link) */
+.teaser-promo .teaser-promo-content > p:not(:first-child, .button-container) {
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-ink);
+}
+
+/* ── CTAs — plain centered text links (source overrides the pill button) ── */
+.teaser-promo .teaser-promo-content .button-container {
+  margin: 0;
+  text-align: center;
+}
+
+.teaser-promo .teaser-promo-content .button-container:first-of-type {
+  margin-top: 18px;
+}
+
+main .teaser-promo a.button:any-link {
+  display: inline-flex;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 15px 0;
+  border: 2px solid transparent;
+  border-radius: 24px;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+  font-family: var(--body-font-family);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: normal;
+  text-transform: none;
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: color 0.25s ease;
+}
+
+main .teaser-promo a.button:any-link:hover,
+main .teaser-promo a.button:any-link:focus-visible {
+  border-color: transparent;
+  background-color: transparent;
+  color: var(--color-rust);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+/* ── Desktop: side-by-side media + card, alternating sides ──────────────── */
+@media (width >= 900px) {
+  .teaser-promo .teaser-promo-panel {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .teaser-promo .teaser-promo-media {
+    flex: 1 1 63.5%;
+  }
+
+  .teaser-promo .teaser-promo-content {
+    flex: 0 0 450px;
+    justify-content: center;
+    padding: 72px 85px;
+  }
+
+  .teaser-promo .teaser-promo-content h2 {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  /* The video panel (featured-left in the source) reverses: card left, media right. */
+  .teaser-promo:has(.teaser-promo-media-video) .teaser-promo-panel {
+    flex-direction: row-reverse;
+  }
+}

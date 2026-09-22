@@ -1,0 +1,10 @@
+{
+  "variantName": "hero-cta",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Compact horizontal call-to-action band with a heading, a subheading, and a single CTA button; solid banded background with padding.",
+  "contentPattern": "Heading + subheading + single call-to-action button.",
+  "usage": "'Get Exclusive Access' newsletter sign-up band on the homepage.",
+  "options": [],
+  "memberVariantIds": ["hero-cta"]
+}
